@@ -24,7 +24,7 @@ function Footer() {
         <div className='h-fit bg-[#2a6a72] flex flex-col w-full capitalize text-white p-4  overflow-hidden'>
 
             <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-4">
-                <div className="text-sm">
+                <div className="text-sm ">
                     <div className="text-xl text-[#cebe30] lilita">categories
                     </div>
                     <div className="">
@@ -35,35 +35,14 @@ function Footer() {
                         ))}
                     </div>
                 </div>
-
-                <div className="text-xl text-[#cebe30] lilita">user
+                <div className="text-xl  text-[#cebe30] lilita">user
                     <div className="text-white merriweather text-sm">
                         <div className="cursor-pointer">profile</div>
                         <div className="cursor-pointer">orders</div>
                         <div className="cursor-pointer">cart</div>
+                        <div className="cursor-pointer">liked products</div>
                         <div className="cursor-pointer">logout</div>
                     </div>
-                </div>
-
-                <div className="text-xl text-[#cebe30] lilita">
-                    <div className="mb-2">
-                        connect with us
-                    </div>
-                    <div className="text-white flex gap-2">
-                        <div className="h-10 cursor-pointer w-10 rounded-full border-[2px] border-white p-1.5  ">
-                            <img src={xt} alt="" />
-                        </div>
-                        <div className="h-10 w-10  cursor-pointer rounded-full border-[2px] border-white p-1.5  ">
-                            <img src={insta} alt="" />
-                        </div>
-                        <div className="h-10 w-10  cursor-pointer rounded-full border-[2px] border-white p-1.5  ">
-                            <img src={meta} alt="" />
-                        </div>
-                        <div className="h-10 w-10 cursor-pointer rounded-full border-[2px] border-white p-1.5  ">
-                            <img src={linked} alt="" />
-                        </div>
-                    </div>
-
                 </div>
 
                 <div className="text-xl text-[#cebe30] lilita  ">
@@ -83,6 +62,28 @@ function Footer() {
                         <a className='lowercase merriweather cursor-pointer' href="mailto:arnavarora0003@gmail.com">arnavarora0003@gmail.com</a>
                     </div>
                 </div>
+
+                <div className="text-xl text-[#cebe30] lilita">
+                    <div className="mb-2">
+                        social media
+                    </div>
+                    <div className="text-white flex gap-2">
+                        <div className="h-10 cursor-pointer w-10 rounded-full border-[2px] border-white p-2  ">
+                            <img src={xt} alt="" />
+                        </div>
+                        <div className="h-10 w-10  cursor-pointer rounded-full border-[2px] border-white p-1.5  ">
+                            <img src={insta} alt="" />
+                        </div>
+                        <div className="h-10 w-10  cursor-pointer rounded-full border-[2px] border-white p-1.5  ">
+                            <img src={meta} alt="" />
+                        </div>
+                        <div className="h-10 w-10 cursor-pointer rounded-full border-[2px] border-white p-1.5  ">
+                            <img src={linked} alt="" />
+                        </div>
+                    </div>
+
+                </div>
+
 
                 <div className="text-xl text-[#cebe30] lilita ">
                     <div className="">customer support</div>

@@ -9,9 +9,9 @@ import travel from '../assets/travel.png'
 import cosmetic from '../assets/cosmetic.png'
 import computer from '../assets/computer.png'
 import home from '../assets/home.png'
-
+import { useNavigate } from 'react-router-dom';
 function Categories() {
-
+    const navigate=useNavigate();
     const categories = [
         "Men",
         "Women",
@@ -36,18 +36,30 @@ function Categories() {
         health,
         travel,
     ];
+    const categories_routes = [
+        "/men",
+        "/women",
+        "/kids",
+        "/electronics",
+        "/home-and-kitchen",
+        "/beauty-and-personal-care",
+        "/sports-and-fitness",
+        "/toys-and-games",
+        "/health-and-wellness",
+        "/travel-and-luggage",
+    ];
 
     return (
-        <div className='flex flex-col flex-wrap justify-center items-center mt-6 h-fit'>
-            <div className="flex flex-row items-center w-full ">
+        <div className='flex flex-col flex-wrap justify-center items-center mt-6 h-fit '>
+            <div className="flex flex-row items-center w-full  ">
                 <div className="h-[1px]  bg-black w-full ml-4"></div>
                 <div className="m-[2px] pacifico text-3xl">Categories</div>
                 <div className="h-[1px] mr-4 bg-black  w-full"></div>
             </div>
 
-            <div className="flex flex-row flex-wrap justify-center items-center h-fit text-center mt-2">
+            <div  className="flex flex-row flex-wrap justify-center items-center h-fit text-center mt-2 xl:px-[100px]">
                 {categories.map((category, index) => (
-                    <div key={index} className="flex flex-col justify-center h-[150px] w-[150px]  merriweather m-4 border-black border-[2px] overflow-hidden cursor-pointer text-black items-center rounded-lg text-md categories-hover ">
+                    <div onClick={() => navigate(categories_routes[index])}  key={index} className="flex flex-col justify-center h-[150px] w-[150px]  merriweather m-4 border-black border-[2px] overflow-hidden cursor-pointer text-black items-center rounded-lg text-md categories-hover ">
                         <img className='h-[90px] w-auto' src={categories_photos[index]} alt="" />
                         <div className="">
                             {category}
