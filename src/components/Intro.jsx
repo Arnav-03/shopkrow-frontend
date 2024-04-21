@@ -13,7 +13,7 @@ function Intro() {
       ">
         <div className="w-full h-2/3  ">
           <div className="text-[#faf9f9] text-6xl md:text-7xl
-          lg:text-8xl alfa-slab drop-shadow-2xl ">Welcome <br />To<br></br>
+          lg:text-8xl alfa-slab drop-shadow-2xl xl:ml-[50px] ">Welcome <br />To<br></br>
             <span className='text-[#c7be40] text-[90px]  lg:text-9xl oleo drop-shadow-2xl '>ShopKrow</span></div><br />
         </div>
       </div>
