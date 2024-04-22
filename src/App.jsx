@@ -12,6 +12,8 @@ import MenRoute from './routes/men.routes'
 import Navigation from './components/Navigation'
 import Cateogory_SubCateogory from './components/basics/Cateogory_SubCateogory'
 import Product from './components/basics/Product';
+import Cart from './components/basics/Cart';
+import ImageEnter from './components/basics/ImageEnter';
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 axios.defaults.withCredentials = true;
 
@@ -24,9 +26,11 @@ function App() {
         <Route path='/' element={<Intro />} />
         <Route path='/home' element={<UserRoute />} />
         <Route path='/home' element={<UserRoute />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/addproduct' element={<ImageEnter />} />
         <Route path='/men' element={<MenRoute />} />
         <Route path="/:categoryName/:subcategoryName" element={<Cateogory_SubCateogory/>} />
-        <Route path="/product/:tagline/:price" element={<Product/>} />
+        <Route path="/product/:tagline/:id" element={<Product/>} />
 
       </Routes>
     </UsercontextProvider>

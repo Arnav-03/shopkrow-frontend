@@ -12,8 +12,9 @@ import search from '../../assets/search.png'
 import Card from '../Card'
 import c1 from '../../assets/c1.jpg';
 import SubCategoriesLIst from '../basics/SubCategoriesLIst'
+import axios from 'axios';
 
-import {  useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const MenMainPage = () => {
   useEffect(() => {
@@ -21,8 +22,9 @@ const MenMainPage = () => {
   }, []);
   const navigate = useNavigate();
 
-  
+
   const categories = [
+    { category_title: 'T-shirts', category_title_link: '/tshirts' },
     { category_title: 'Bottoms', category_title_link: '/bottoms' },
     { category_title: 'Suits', category_title_link: '/suits' },
     { category_title: 'Undergarments', category_title_link: '/undergarments' },
@@ -45,6 +47,32 @@ const MenMainPage = () => {
     const url = `/men/${Mresult}`;
     navigate(url);
   }
+
+  const [newArrivals, setNewArrivals] = useState([]);
+  const [trending, settrending] = useState([]);
+
+  useEffect(() => {
+    fetchNewArrivals();
+    fetchTrending();
+  }, []);
+
+  const fetchNewArrivals = async () => {
+    try {
+      const response = await axios.get('/products/latest/men'); // Change the category parameter here
+      setNewArrivals(response.data);
+    } catch (error) {
+      console.error('Error fetching new arrivals:', error);
+    }
+  };
+  const fetchTrending = async () => {
+    try {
+      const responset = await axios.get('/products/trending/men'); // Change the category parameter here
+      settrending(responset.data);
+    } catch (error) {
+      console.error('Error fetching new arrivals:', error);
+    }
+  };
+  
   return (
     <div className='h-fit w-full'>
       <Navigation />
@@ -98,11 +126,11 @@ const MenMainPage = () => {
             </div>
           </div>
         </div>
-{/* 
+        {/* 
 //search */}
         <div className="flex items-center justify-center my-4 w-full h-fit">
           <div className="flex sriracha tracking-[1px] items-center">
-            <input onChange={(e)=>setMresult(e.target.value)} className='border-[2px] h-10 px-[20px] border-black rounded-3xl w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] pr-[50px] outline-none ' type="text" placeholder="Search under men's section" />
+            <input onChange={(e) => setMresult(e.target.value)} className='border-[2px] h-10 px-[20px] border-black rounded-3xl w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] pr-[50px] outline-none ' type="text" placeholder="Search under men's section" />
             <img onClick={handleMsearch} className='z-50 border-l-[2px] border-black h-10 w-10 p-1.5 ml-[-50px] cursor-pointer' src={search} alt="" />
           </div>
         </div>
@@ -125,11 +153,9 @@ const MenMainPage = () => {
         </div>
         <div className="flex justify-center items-center">
           <div className="flex flex-wrap">
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
+            {trending.map((product) => (
+              <Card key={product._id} id={product._id} image={product.image} price={product.price} tagline={product.tagline} />
+            ))}
           </div>
         </div>
         <div className="flex flex-row items-center w-full">
@@ -139,11 +165,9 @@ const MenMainPage = () => {
         </div>
         <div className="flex justify-center items-center">
           <div className="flex flex-wrap">
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
-            <Card image={c1} price="700" tagline="Short Sleeve Casual Shirts Button Down Shirt for Men Beach Summer Wedding Shirt" />
+            {newArrivals.map((product) => (
+              <Card key={product._id} id={product._id} image={product.image} price={product.price} tagline={product.tagline} />
+            ))}
           </div>
         </div>
       </div>

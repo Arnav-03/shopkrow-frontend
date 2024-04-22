@@ -1,63 +1,86 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import Navigation from '../Navigation.jsx'
-import photu from '../../assets/6.jpg'
 import ResultNotFound from '../basics/ResultNotFound.jsx'
+import axios from 'axios';
+import imagee from '../../assets/6.jpg' 
 const Product = () => {
-  const { tagline, price} = useParams();
-  const [resultfound, setresultfound] = useState(true)
+  const { tagline, price, id } = useParams();
+  const [resultfound, setresultfound] = useState(false)
+  const [product, setproduct] = useState([])
+  useEffect(() => {
+    fetchProductDetails();
+  }, []);
+
+  const fetchProductDetails = async () => {
+    try {
+      const response = await axios.get(`/product/${id}`); // 
+      if(response){
+        setresultfound(true);
+      }
+      setproduct(response.data[0]);
+    } catch (error) {
+      console.error('Error fetching new arrivals:', error);
+    }
+  };
 
   return (
-    <div>
+    <div className='h-screen lg:overflow-hidden w-full overflow-x-hidden'>
       <Navigation />
       {resultfound && (
-   <div className="flex flex-col md:flex-row  h-full w-full  ">
-   <div className="md:w-1/2 h-full flex  items-center justify-center">
-     <div className="h-4/5 w-4/5 m-8 p-4  flex justify-center items-center">
-       <img className='h-full w-auto rounded-2xl ' src={photu} alt="" />
-     </div>
+        <div className="flex flex-col md:flex-row  h-full w-full  ">
+          <div className="w-full h-[280px] md:h-[400px] lg:h-full mt-4 lg:mt-0 flex  items-center justify-center">
+            <div className=" w-full  lg:h-4/5 lg:w-4/5   flex justify-center items-center overflow-hidden">
+              <img className='h-[280px] w-[full] lg:h-[450px]  rounded-2xl m-0 p-0' src={product.image} alt="" />
 
-   </div>
+            </div>
 
-
-   <div className="md:w-1/2 h-full flex flex-col ">
-     <div className="bebas leading-4 text-xl md:text-4xl px-4 mt-[-20px] md:m-6">
-    {tagline}</div>
-     <div className="text-[#27606e] text-4xl md:text-5xl px-6 font-bold">&#8377;{price}</div>
+          </div>
 
 
-     <div className="uppercase flex gap-2 ml-6 m-2 my-1 md:mt-10 md:ml-6 md:mb-10 md:text-xl">
-       <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">s</div>
-       <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">m</div>
-       <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">l</div>
-       <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">xl</div>
-     </div>
+          <div className="w-full h-full flex flex-col  lg:justify-center p-6 overflow-hidden  lg:mt-0 ">
+            <div className="bebas leading-6 text-2xl sm:text-3xl md:text-4xl   ">
+              {tagline}</div>
+            <div className="flex flex-col uppercase ">
+              <div className="text-2xl">{product.category}</div>
+              <div className="text-md">{product.subcategory}</div>
+            </div>
+            <div className="text-[#27606e] text-4xl md:text-5xl  font-bold">&#8377;{product.price}</div>
 
 
-     <div className="flex gap-1 text-white m-2 my-0 p-3  text-2xl items-center  text-center">
-       <div className="rounded-lg bg-[#222121] h-8 w-8 md:h-10 md:w-10 cursor-pointer">-</div>
-       <div className="border-2 border-[#000000] rounded-lg text-black h-8 md:h-10 w-fit px-2 md:px-3 ">1</div>
-       <div className="  rounded-lg bg-[#222121] h-8 w-8 md:h-10 md:w-10 cursor-pointer">+</div>
-     </div>
+            <div className="uppercase flex gap-2  my-4  md:text-xl">
+              <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">s</div>
+              <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">m</div>
+              <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">l</div>
+              <div className="border-2 border-black p-2 h-10 items-center justify-center flex w-10 rounded-lg anton  cursor-pointer">xl</div>
+            </div>
 
-     
-     <div className="cursor-pointer flex w-full items-center justify-center">
-       <div className="capitalize bg-[#125b7c] text-2xl md:text-4xl anton tracking-[2px] text-white w-fit p-2 px-8 rounded-lg mx-4">
-         add to cart
-       </div>
-     </div>
 
-   </div>
 
- </div>
+            <div className="flex justify-center gap-4 text-center m-4">
+
+                <div className="capitalize bg-[#125b7c] text-2xl md:text-4xl anton  text-white  p-2 h-fit w-[200px]  rounded-lg ">
+                  add to cart
+    
+              </div>
+                <div className="capitalize bg-[#d3c60f] text-2xl md:text-4xl anton  text-white  p-2 h-fit w-[200px]  rounded-lg ">
+                  go to cart
+                </div>
+          
+            </div>
+
+
+          </div>
+
+        </div>
       )}
 
       {!resultfound && (
         <div className=" items-center justify-center flex mt-[100px]">
-          <ResultNotFound/>
+          <ResultNotFound />
         </div>
       )}
-   
+
     </div>
   )
 }

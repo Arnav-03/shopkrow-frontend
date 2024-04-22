@@ -1,10 +1,10 @@
 import React from 'react';
 import {  useNavigate } from 'react-router-dom'
-function Card({ image, price, tagline }) {
+function Card({ id,image, price, tagline }) {
   const navigate = useNavigate();
 
   const handleCardClick = ()=>{
-    const url=`/product/${tagline}/${price}`
+    const url=`/product/${tagline}/${id}`
       navigate(url);
   }
   return (
