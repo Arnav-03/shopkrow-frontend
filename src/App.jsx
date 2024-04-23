@@ -14,6 +14,7 @@ import Cateogory_SubCateogory from './components/basics/Cateogory_SubCateogory'
 import Product from './components/basics/Product';
 import Cart from './components/basics/Cart';
 import ImageEnter from './components/basics/ImageEnter';
+import { CartContextProvider } from './context/CartContext';
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 axios.defaults.withCredentials = true;
 
@@ -21,8 +22,8 @@ function App() {
   return (
     <>
     <UsercontextProvider>
-
-    <Routes>
+      <CartContextProvider>
+      <Routes>
         <Route path='/' element={<Intro />} />
         <Route path='/home' element={<UserRoute />} />
         <Route path='/home' element={<UserRoute />} />
@@ -33,6 +34,8 @@ function App() {
         <Route path="/product/:tagline/:id" element={<Product/>} />
 
       </Routes>
+      </CartContextProvider>
+  
     </UsercontextProvider>
     </>
   )

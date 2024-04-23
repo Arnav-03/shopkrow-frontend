@@ -6,11 +6,16 @@ import cart from '../assets/cart.png';
 import axios from 'axios';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-
+import { CartContext } from '../context/CartContext';
+import {useNavigate} from 'react-router-dom'
 function Navigation() {
     const { logout } = useContext(UserContext);
+    const {Cart} = useContext(CartContext);
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const navigate = useNavigate();
+    const gotocart=()=>{
+        navigate('/cart')
+    }
     const logoutt = async () => {
         await axios.post('/logout');
         logout();
@@ -32,12 +37,13 @@ function Navigation() {
 
                     <li className="cursor-pointer border-b-[1px] w-full border-black p-2" onClick={() => setMenuOpen(false)}>Home</li>
                     <li className="cursor-pointer border-b-[1px] w-full  border-black p-2" onClick={() => setMenuOpen(false)}>Categories</li>
-                    <li className="cursor-pointer items-center justify-center flex border-b-[1px] w-full  border-black p-2  " onClick={() => setMenuOpen(false)}>
+                    <li  className="cursor-pointer items-center justify-center flex border-b-[1px] w-full  border-black p-2  " onClick={() => {setMenuOpen(false) ; gotocart()}}>
                         <img className='h-6 w-6 xl:h-8 xl:w-8' src={cart} alt="" />
-                        <div className="bg-[#e2d632] rounded-full text-center mt-[-25px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
-                            <div className="mt-[-8px] text-[20px]">0</div>
+                        
+                        <div onClick={gotocart} className="bg-[#e2d632] rounded-full text-center mt-[-25px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
+                            <div className="mt-[-8px] text-[20px]">{Cart.length}</div>
                         </div>
-                        <div className=""> Cart</div>
+                        <div  onClick={gotocart} className=""> Cart</div>
 
                     </li>
                     <li className="cursor-pointer border-b-[1px] w-full  border-black p-2" onClick={() => setMenuOpen(false)}>Profile</li>
@@ -61,12 +67,12 @@ function Navigation() {
                     <ul className='flex gap-[20px]'>
                         <li className=' cursor-pointer'>Home</li>
                         <li className='cursor-pointer'>Categories</li>
-                        <li className='cursor-pointer flex items-center'>
-                            <img className='h-6 w-6 xl:h-8 xl:w-8' src={cart} alt="" />
-                            <div className="bg-[#e2d632] rounded-full text-center mt-[-30px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
-                                <div className="mt-[-6px] text-[20px]">0</div>
+                        <li onClick={gotocart} className='cursor-pointer flex items-center'>
+                            <img  className='h-6 w-6 xl:h-8 xl:w-8' src={cart} alt="" />
+                            <div   className="bg-[#e2d632] rounded-full text-center mt-[-30px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
+                                <div className="mt-[-6px] text-[20px]">{Cart.length}</div>
                             </div>
-                            <div className="">Cart</div>
+                            <div   className="">Cart</div>
                         </li>
                         <li className='cursor-pointer'>Profile</li>
                         <li onClick={logoutt} className='cursor-pointer'>Logout</li>

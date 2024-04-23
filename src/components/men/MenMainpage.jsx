@@ -131,7 +131,7 @@ const MenMainPage = () => {
         <div className="flex items-center justify-center my-4 w-full h-fit">
           <div className="flex sriracha tracking-[1px] items-center">
             <input onChange={(e) => setMresult(e.target.value)} className='border-[2px] h-10 px-[20px] border-black rounded-3xl w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] pr-[50px] outline-none ' type="text" placeholder="Search under men's section" />
-            <img onClick={handleMsearch} className='z-50 border-l-[2px] border-black h-10 w-10 p-1.5 ml-[-50px] cursor-pointer' src={search} alt="" />
+            <img onClick={handleMsearch} className=' border-l-[2px] border-black h-10 w-10 p-1.5 ml-[-50px] cursor-pointer' src={search} alt="" />
           </div>
         </div>
 
