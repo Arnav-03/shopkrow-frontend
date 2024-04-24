@@ -15,6 +15,8 @@ import Product from './components/basics/Product';
 import Cart from './components/basics/Cart';
 import ImageEnter from './components/basics/ImageEnter';
 import { CartContextProvider } from './context/CartContext';
+import Checkout from './components/basics/Checkout'
+import Profile from './components/basics/Profile';
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 axios.defaults.withCredentials = true;
 
@@ -27,7 +29,9 @@ function App() {
         <Route path='/' element={<Intro />} />
         <Route path='/home' element={<UserRoute />} />
         <Route path='/home' element={<UserRoute />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route path='/addproduct' element={<ImageEnter />} />
         <Route path='/men' element={<MenRoute />} />
         <Route path="/:categoryName/:subcategoryName" element={<Cateogory_SubCateogory/>} />

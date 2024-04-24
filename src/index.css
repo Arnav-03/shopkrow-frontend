@@ -12,13 +12,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Poiret+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* width */
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 1px;
 }
 /* Track */
 ::-webkit-scrollbar-track {
@@ -29,9 +30,43 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #000000;
-  border-radius: 10px;
 
 }
+/* Horizontal scroll bar */
+::-webkit-scrollbar {
+  height: 1px; /* Set the height of the horizontal scroll bar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; /* Set the background color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000000; /* Set the color of the thumb/handle */
+}
+
+/* Vertical scroll bar */
+::-webkit-scrollbar-vertical {
+  width: 10px; /* Set the width of the vertical scroll bar */
+}
+
+/* Track */
+::-webkit-scrollbar-vertical::part(track) {
+  background: transparent; /* Set the background color of the track */
+}
+
+/* Handle */
+::-webkit-scrollbar-vertical::part(thumb) {
+  background: #000000; /* Set the color of the thumb/handle */
+}
+.acme {
+  font-family: "Acme", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .platypi {
   font-family: "Platypi", serif;
   font-optical-sizing: auto;

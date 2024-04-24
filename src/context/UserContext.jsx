@@ -17,6 +17,7 @@ export function UsercontextProvider({ children }) {
   useEffect(() => {
     axios.get('/profile').then(response => {
         setUser(response.data);
+        console.log(user);
     });
   
   

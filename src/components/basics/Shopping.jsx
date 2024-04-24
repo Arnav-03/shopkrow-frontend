@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Cart_product from './Cart_product';
 import { CartContext } from '../../context/CartContext.jsx';
-
+import emptycart from '../../assets/emptycart.PNG'
 const Shopping = () => {
   const { Cart } = useContext(CartContext);
   return (
@@ -16,7 +16,9 @@ const Shopping = () => {
         </div>
         <div className="lg:overflow-x-hidden h-full flex flex-col ">
         {Cart.length === 0 ? (
-            <div className="text-center text-gray-500 mt-[100px] lilita text-4xl  ">Your Cart is Empty !</div>
+            <div className="text-center text-black mt-[100px] lilita text-4xl  ">Your Cart is Empty !
+            <div className="h-[200px] w-full flex items-center justify-center ">
+              <img className='h-[150px]  ' src={emptycart} alt="" /></div></div>
           ) : (
             Cart.map((item) => (
               <Cart_product

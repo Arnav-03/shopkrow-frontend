@@ -73,9 +73,10 @@ const MenMainPage = () => {
     }
   };
   
-  return (
-    <div className='h-fit w-full'>
-      <Navigation />
+  return (<>
+    <Navigation />
+    <div className='h-fit w-full overflow-x-hidden'>
+    
       <div className="h-full w-full flex-col overflow-hidden ">
         <div className="h-[350px] overflow-hidden w-full flex justify-center bg-[#aad0e9]" >
           <div className="hidden xl:flex items-center justify-center">
@@ -173,6 +174,7 @@ const MenMainPage = () => {
       </div>
       <Footer />
     </div>
+    </>
   )
 }
 

@@ -84,7 +84,7 @@ const ImageSlider = () => {
         md:text-5xl lg:text-5xl xl:text-6xl   ml-5
         sm:ml-[70px] uppercase text-left md:text-center lg:text-left tracking-[3px] sm:tracking-[7px]
         lg:tracking-[2px]">
-          Your <span className='text-[#1a8492]'>one-stop</span> <br />destination <br /> for all  things <span className='text-[#c0be2a]'><br />fashionable.</span></div>
+          Your <span className='text-[#1a8492]'>one-stop</span> <br />destination <br /> for all  things <span className='text-yellow-500'><br />fashionable.</span></div>
 
         <div className="image-slider  m-2  ">
           <div className="slider

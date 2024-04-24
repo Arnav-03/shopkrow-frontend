@@ -21,11 +21,11 @@ function Footer() {
         "Travel & Luggage",
     ];
     return (
-        <div className='h-fit bg-[#2a6a72] flex flex-col w-full capitalize text-white p-4  overflow-hidden'>
+        <div className='h-fit bg-[#2a6a72] flex flex-col w-full capitalize text-white p-4   overflow-hidden'>
 
             <div className="flex flex-col sm:flex-row sm:flex-wrap justify-between gap-4">
                 <div className="text-sm ">
-                    <div className="text-xl text-[#cebe30] lilita">categories
+                    <div className="text-xl text-yellow-500 lilita">categories
                     </div>
                     <div className="">
                         {categories.map((category, index) => (
@@ -35,7 +35,7 @@ function Footer() {
                         ))}
                     </div>
                 </div>
-                <div className="text-xl  text-[#cebe30] lilita">user
+                <div className="text-xl  text-yellow-500 lilita">user
                     <div className="text-white merriweather text-sm">
                         <div className="cursor-pointer">profile</div>
                         <div className="cursor-pointer">orders</div>
@@ -45,7 +45,7 @@ function Footer() {
                     </div>
                 </div>
 
-                <div className="text-xl text-[#cebe30] lilita  ">
+                <div className="text-xl text-yellow-500 lilita  ">
                     <div className="">contact us</div>
                     <div className="flex text-white text-sm items-center ">
                         <div className="h-12 w-12 cursor-pointer  rounded-full  p-1.5  ">
@@ -63,7 +63,7 @@ function Footer() {
                     </div>
                 </div>
 
-                <div className="text-xl text-[#cebe30] lilita">
+                <div className="text-xl text-yellow-500 lilita">
                     <div className="mb-2">
                         social media
                     </div>
@@ -85,7 +85,7 @@ function Footer() {
                 </div>
 
 
-                <div className="text-xl text-[#cebe30] lilita ">
+                <div className="text-xl text-yellow-500 lilita ">
                     <div className="">customer support</div>
                     <div className="flex text-white text-sm items-center ">
                         <div className="merriweather cursor-pointer">need some help?</div>

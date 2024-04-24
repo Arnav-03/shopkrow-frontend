@@ -6,7 +6,7 @@ function Register() {
     //user context
     const { login,setUser } = useContext(UserContext);
     //register or login
-    const [registerPage, setregisterPage] = useState(true);
+    const [registerPage, setregisterPage] = useState(!true);
     //register user details
     const [username, setusername] = useState("");
     const [email, setemail] = useState("");
@@ -163,10 +163,10 @@ function Register() {
                 <div className='text-[#d1d0c4] text-7xl   oleo drop-shadow-2xl '>ShopKrow</div>
 
                 {registerPage && (
-                    <div className="text-center text-3xl m-6 oleo">Register now to get <span className='text-[#e2d632] uppercase lilita'>free delivery</span> <br /> on first order.</div>
+                    <div className="text-center text-3xl m-6 oleo">Register now to get <span className='text-yellow-400 uppercase lilita'>free delivery</span> <br /> on first order.</div>
                 )}
                 {!registerPage && (
-                    <div className="text-center text-3xl m-6 oleo">Start Saving Today with Exclusive <br />   <span className='text-[#e2d632] uppercase lilita'>Login Deals!!!</span> <br /> </div>
+                    <div className="text-center text-3xl m-6 oleo">Start Saving Today with Exclusive <br />   <span className='text-yellow-400 uppercase lilita'>Login Deals!!!</span> <br /> </div>
                 )}
             </div>
             <div className="w-full md:w-1/2 h-full bg-[#ffffff] flex flex-col justify-center items-center">
