@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import xt from '../assets/xt.png'
 import insta from '../assets/insta.png'
 import meta from '../assets/meta.png'
@@ -6,8 +6,13 @@ import linked from '../assets/linked.png'
 import support from '../assets/support.png'
 import phone from '../assets/phone.png'
 import email from '../assets/email.png'
+import {useNavigate } from 'react-router-dom'
+import {UserContext} from '../context/UserContext'
+import axios from 'axios';
 
 function Footer() {
+    const navigate=useNavigate();
+    const {logout}=useContext(UserContext)
     const categories = [
         "Men",
         "Women",
@@ -20,6 +25,23 @@ function Footer() {
         "Health & Wellness",
         "Travel & Luggage",
     ];
+    const categories_routes = [
+        "/men",
+        "/women",
+        "/kids",
+        "/electronics",
+        "/home-and-kitchen",
+        "/beauty-and-personal-care",
+        "/sports-and-fitness",
+        "/toys-and-games",
+        "/health-and-wellness",
+        "/travel-and-luggage",
+    ];
+    const logoutt = async () => {
+        await axios.post('/logout');
+        navigate('/home')
+        logout();
+    }
     return (
         <div className='h-fit bg-[#2a6a72] flex flex-col w-full capitalize text-white p-4   overflow-hidden'>
 
@@ -29,7 +51,7 @@ function Footer() {
                     </div>
                     <div className="">
                         {categories.map((category, index) => (
-                            <div key={index} className="cursor-pointer merriweather">
+                            <div onClick={() => navigate(categories_routes[index])}   key={index} className="cursor-pointer merriweather">
                                 <div className=""> {category} </div>
                             </div>
                         ))}
@@ -37,11 +59,9 @@ function Footer() {
                 </div>
                 <div className="text-xl  text-yellow-500 lilita">user
                     <div className="text-white merriweather text-sm">
-                        <div className="cursor-pointer">profile</div>
-                        <div className="cursor-pointer">orders</div>
-                        <div className="cursor-pointer">cart</div>
-                        <div className="cursor-pointer">liked products</div>
-                        <div className="cursor-pointer">logout</div>
+                        <div onClick={()=>{navigate('/profile')}} className="cursor-pointer">profile</div>
+                        <div  onClick={()=>{navigate('/cart')}}  className="cursor-pointer">cart</div>
+                        <div onClick={logoutt} className="cursor-pointer">logout</div>
                     </div>
                 </div>
 

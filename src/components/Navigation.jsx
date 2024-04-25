@@ -24,6 +24,7 @@ function Navigation() {
     }
     const logoutt = async () => {
         await axios.post('/logout');
+        navigate('/home')
         logout();
     }
 

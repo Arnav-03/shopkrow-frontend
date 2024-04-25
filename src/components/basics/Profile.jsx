@@ -13,21 +13,17 @@ import DeleteAccount from './DeleteAccount'
 import ChangePassword from './ChangePassword'
 import { UserContext } from '../../context/UserContext'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import Logoutpage from './Logoutpage'
 
 const Profile = () => {
-  const navigate = useNavigate();
 
   const [page, setpage] = useState(1);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [page]);
-  const { user, logout } = useContext(UserContext);
-  const logoutt = async () => {
-    await axios.post('/logout');
-    logout();
-    navigate('/home')
-  }
+  const { user } = useContext(UserContext);
+
 
   const returnPage = (choice) => {
     if (choice === 1) {
@@ -43,13 +39,7 @@ const Profile = () => {
       return <DeleteAccount />
     }
     if (choice === 5) {
-      return <div className="h-fit w-full lg:w-4/5  text-center bg-white drop-shadow-2xl lg:p-[50px] rounded-xl merriweather">
-        <div className=" text-2xl">Are You Sure You Want to Logout ?</div>
-        <div className="flex items-center justify-center gap-10 text-white ">
-          <div onClick={logoutt} className="bg-red-600 flex items-center justify-center uppercase m-4 h-[50px] w-[80px] rounded-xl cursor-pointer ">yes</div>
-          <div onClick={() => setpage(1)} className="bg-green-600 flex items-center justify-center uppercase m-4 h-[50px] w-[80px] rounded-xl cursor-pointer ">no</div>
-        </div>
-      </div>
+      return <Logoutpage/>
     }
   }
   return (
@@ -61,16 +51,16 @@ const Profile = () => {
           <div className="h-full w-full lg:w-2/5 flex flex-col border-r-2 border-black">
 
             <div className="flex flex-row items-center justify-around border-b-[1px] border-[#9b9898] w-full h-fit p-4 py-3 overflow-hidden">
-              <div className="text-3xl lg:text-4xl lilita ">Welcome
+              <div className="text-3xl lg:text-4xl lilita ">Welcome <br />
                 <span className='text-[#265d81] uppercase'> {user?.username}</span>
               </div>
               <div className="border-4 bg-whte border-black 
               h-[100px] w-[100px]
               l lg:h-[120px] lg:w-[120px] 
-              xl:h-[190px] xl:w-[190px] rounded-full">
+              xl:h-[150px] xl:w-[150px] rounded-full">
                 <img className='h-[100px] w-[100px]
               lg:h-[120px] lg:w-[120px] 
-              xl:h-[190px] xl:w-[190px]' src={userr} alt="" />
+              xl:h-[150px] xl:w-[150px]' src={userr} alt="" />
               </div>
             </div>
 
@@ -115,13 +105,7 @@ const Profile = () => {
                   logout
                 </li>
                 <div className={`lg:hidden ${page===5?"":"hidden"}`}>
-                  <div className="h-fit w-full lg:w-4/5  text-center bg-white drop-shadow-2xl lg:p-[50px] rounded-xl merriweather">
-                    <div className=" text-2xl">Are You Sure You Want to Logout ?</div>
-                    <div className="flex items-center justify-center gap-10 text-white ">
-                      <div onClick={logoutt} className="bg-red-600 flex items-center justify-center uppercase m-4 h-[50px] w-[80px] rounded-xl cursor-pointer ">yes</div>
-                      <div onClick={() => setpage(1)} className="bg-green-600 flex items-center justify-center uppercase m-4 h-[50px] w-[80px] rounded-xl cursor-pointer ">no</div>
-                    </div>
-                  </div>
+                  <Logoutpage/>
                 </div>
 
               </ul>
