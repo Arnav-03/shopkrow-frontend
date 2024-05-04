@@ -6,6 +6,29 @@ export const CartContext = createContext({});
 export function CartContextProvider({ children }) {
   const [Cart, setCart] = useState([]);
 
+  const sendCartToServer = async () => {
+    try {
+      await axios.post("/cartcookie", { Cart }); // Send Cart data in the request body
+    } catch (error) {
+      console.log("Could not send cart data:", error);
+    }
+  };
+  useEffect(() => {
+    axios.get('/profile')
+      .then(response => {
+        if (response.data.Cart) {
+          setCart(response.data.Cart);
+        }
+      })
+      .catch(error => {
+        console.log("Error fetching cart data:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    sendCartToServer();
+  }, [Cart]);
+
   const addcart = (id, productinfo) => {
     const existingProduct = Cart.find((item) => item.id === id);
     if (existingProduct) {

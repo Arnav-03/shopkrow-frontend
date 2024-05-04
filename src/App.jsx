@@ -17,6 +17,9 @@ import ImageEnter from './components/basics/ImageEnter';
 import { CartContextProvider } from './context/CartContext';
 import Checkout from './components/basics/Checkout'
 import Profile from './components/basics/Profile';
+import { CheckoutContextProvider } from './context/CheckoutContext';
+import Address from './components/basics/Address';
+import { AddresscontextProvider } from './context/AddressContext';
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 axios.defaults.withCredentials = true;
 
@@ -24,10 +27,14 @@ function App() {
   return (
     <>
     <UsercontextProvider>
+      <AddresscontextProvider>
       <CartContextProvider>
+        <CheckoutContextProvider>
       <Routes>
         <Route path='/' element={<Intro />} />
         <Route path='/home' element={<UserRoute />} />
+        <Route path='/address' element={<Address />} />
+
         <Route path='/home' element={<UserRoute />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
@@ -38,8 +45,9 @@ function App() {
         <Route path="/product/:tagline/:id" element={<Product/>} />
 
       </Routes>
+      </CheckoutContextProvider>
       </CartContextProvider>
-  
+      </AddresscontextProvider>
     </UsercontextProvider>
     </>
   )

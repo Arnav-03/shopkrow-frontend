@@ -16,16 +16,23 @@ export function UsercontextProvider({ children }) {
 
   useEffect(() => {
     axios.get('/profile').then(response => {
-        setUser(response.data);
-        console.log(user);
+      setUser(response.data);
+   
     });
-  
-  
   }, []);
-  
+
+  const checkLogin = async () => {
+    try {
+      const response = await axios.get('/profile');
+      return response.data !== null ? 1 : 2;
+    } catch (error) {
+      console.error('Error checking login:', error);
+      return 2;
+    }
+  };
 
   return (
-    <UserContext.Provider value={{ login, logout, user, setUser }}>
+    <UserContext.Provider value={{ login, logout, user, setUser, checkLogin }}>
       {children}
     </UserContext.Provider>
   );

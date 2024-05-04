@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cross from '../assets/cross.png';
 import menu from '../assets/menu.png';
 import search from '../assets/search.png';
@@ -7,19 +7,20 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 function Navigation() {
-    const { logout } = useContext(UserContext);
-    const {Cart} = useContext(CartContext);
+    const { user, logout } = useContext(UserContext);
+    const [usercheck, setusercheck] = useState(false)
+    const { Cart } = useContext(CartContext);
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
-    const gotocart=()=>{
+    const gotocart = () => {
         navigate('/cart')
     }
-    const gotohome=()=>{
+    const gotohome = () => {
         navigate('/home')
     }
-    const gotoprofile=()=>{
+    const gotoprofile = () => {
         navigate('/profile')
     }
     const logoutt = async () => {
@@ -27,6 +28,13 @@ function Navigation() {
         navigate('/home')
         logout();
     }
+    useEffect(() => {
+        if (user !== null) {
+            setusercheck(true)
+        }
+
+    }, [user])
+
 
     return (
         <div className="sticky top-0 z-50 bg-white w-full ">
@@ -42,20 +50,20 @@ function Navigation() {
                 </div>
                 <ul className="p-4 text-2xl pacifico  w-full">
 
-                    <li className="cursor-pointer border-b-[1px] w-full border-black p-2" 
-                    onClick={() =>{ setMenuOpen(false); gotohome();}}>Home</li>
-                    <li  className="cursor-pointer items-center justify-center flex border-b-[1px] w-full  border-black p-2  " 
-                    onClick={() => {setMenuOpen(false) ; gotocart()}}>
+                    <li className="cursor-pointer border-b-[1px] w-full border-black p-2"
+                        onClick={() => { setMenuOpen(false); gotohome(); }}>Home</li>
+                    <li className="cursor-pointer items-center justify-center flex border-b-[1px] w-full  border-black p-2  "
+                        onClick={() => { setMenuOpen(false); gotocart() }}>
                         <img className='h-6 w-6 xl:h-8 xl:w-8' src={cart} alt="" />
-                        
+
                         <div onClick={gotocart} className="bg-yellow-400 rounded-full text-center mt-[-25px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
                             <div className="mt-[-8px] text-[20px]">{Cart.length}</div>
                         </div>
-                        <div  onClick={gotocart} className=""> Cart</div>
+                        <div onClick={gotocart} className=""> Cart</div>
 
                     </li>
-                    <li className="cursor-pointer border-b-[1px] w-full  border-black p-2" 
-                    onClick={() =>{ setMenuOpen(false); gotoprofile();}}>Profile</li>
+                    <li className="cursor-pointer border-b-[1px] w-full  border-black p-2"
+                        onClick={() => { setMenuOpen(false); gotoprofile(); }}>Profile</li>
                     <li className="cursor-pointer border-b-[1px] w-full text-red-600 border-black p-2" onClick={logoutt}>Logout</li>
                 </ul>
             </div>
@@ -73,17 +81,27 @@ function Navigation() {
                 </div>
                 {/* List */}
                 <div className="text-xl xl:text-2xl pacifico capitalize hidden lg:flex ">
-                    <ul className='flex gap-[20px]'>
+                    <ul className='flex gap-4'>
                         <li onClick={gotohome} className=' cursor-pointer'>Home</li>
                         <li onClick={gotocart} className='cursor-pointer flex items-center'>
-                            <img  className='h-6 w-6 xl:h-8 xl:w-8' src={cart} alt="" />
-                            <div   className="bg-yellow-400 rounded-full text-center mt-[-30px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
+                            <img className='h-6 w-6 xl:h-8 xl:w-8' src={cart} alt="" />
+                            <div className="bg-yellow-400 rounded-full text-center mt-[-30px] ml-[-10px] xl:h-6 xl:w-6 h-5 w-5 ">
                                 <div className="mt-[-6px] text-[20px]">{Cart.length}</div>
                             </div>
-                            <div   className="">Cart</div>
+                            <div className="">Cart</div>
                         </li>
-                        <li  onClick={gotoprofile}className='cursor-pointer'>Profile</li>
-                        <li onClick={logoutt} className='cursor-pointer'>logout</li>
+                        {usercheck && (
+                            <div className="flex gap-6">
+                                <li onClick={gotoprofile} className='cursor-pointer'>Profile</li>
+                                <li onClick={logoutt} className='cursor-pointer'>logout</li>
+                            </div>
+                        )}
+                         {!usercheck && (
+                            <div className="flex gap-6">
+                                <li onClick={()=>{navigate('/home')}} className='cursor-pointer'>Login</li>
+                            </div>
+                        )}
+
                     </ul>
                 </div>
             </div>

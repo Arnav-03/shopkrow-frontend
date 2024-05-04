@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Cart_product from './Cart_product';
 import { CartContext } from '../../context/CartContext.jsx';
 import emptycart from '../../assets/emptycart.PNG'
-const Shopping = () => {
+const Shopping = (showquantiy) => {
   const { Cart } = useContext(CartContext);
   return (
     <div className='h-full w-full'>
@@ -29,6 +29,7 @@ const Shopping = () => {
                 quantity={item.quantity}
                 size={item.size}
                 tagline={item.tagline}
+                showquantity={true}
               />
             ))
           )}
