@@ -8,7 +8,7 @@ function Card({ id,image, price, tagline }) {
       navigate(url);
   }
   return (
-    <div onClick={handleCardClick} className='	 relative h-[210px] hover:border-2 hover:border-black w-[170px] m-2 overflow-hidden rounded-xl p-2 '>
+    <div onClick={handleCardClick} className='	 relative h-[210px] hover:scale-[1.1] w-[170px] m-2 overflow-hidden rounded-xl p-2 '>
   
       <div className="mt-[-20px]  flex justify-center">
         <img className='cursor-pointer h-[150px] w-auto' src={image} alt="loading..." />

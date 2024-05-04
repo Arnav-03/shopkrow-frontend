@@ -20,6 +20,7 @@ import Profile from './components/basics/Profile';
 import { CheckoutContextProvider } from './context/CheckoutContext';
 import Address from './components/basics/Address';
 import { AddresscontextProvider } from './context/AddressContext';
+import Search from './components/basics/Search';
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 axios.defaults.withCredentials = true;
 
@@ -33,7 +34,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Intro />} />
         <Route path='/home' element={<UserRoute />} />
-        <Route path='/address' element={<Address />} />
+        <Route path='/search/:search' element={<Search />} />
 
         <Route path='/home' element={<UserRoute />} />
         <Route path='/profile' element={<Profile />} />

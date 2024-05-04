@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cross from '../assets/cross.png';
 import menu from '../assets/menu.png';
-import search from '../assets/search.png';
+import searchh from '../assets/search.png';
 import cart from '../assets/cart.png';
 import axios from 'axios';
 import { useContext } from 'react';
@@ -13,6 +13,7 @@ function Navigation() {
     const [usercheck, setusercheck] = useState(false)
     const { Cart } = useContext(CartContext);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [search, setsearch] = useState(null)
     const navigate = useNavigate();
     const gotocart = () => {
         navigate('/cart')
@@ -34,6 +35,9 @@ function Navigation() {
         }
 
     }, [user])
+    const handlesearch = () => {
+        navigate(`/search/${search}`)
+    }
 
 
     return (
@@ -62,9 +66,19 @@ function Navigation() {
                         <div onClick={gotocart} className=""> Cart</div>
 
                     </li>
-                    <li className="cursor-pointer border-b-[1px] w-full  border-black p-2"
-                        onClick={() => { setMenuOpen(false); gotoprofile(); }}>Profile</li>
-                    <li className="cursor-pointer border-b-[1px] w-full text-red-600 border-black p-2" onClick={logoutt}>Logout</li>
+                    {usercheck && (
+                        <div className="flex flex-col ">
+                            <li className="cursor-pointer border-b-[1px] w-full  border-black p-2"
+                                onClick={() => { setMenuOpen(false); gotoprofile(); }}>Profile</li>
+                            <li className="cursor-pointer w-full text-red-600 " onClick={logoutt}>Logout</li>
+                        </div>
+                    )}
+                       {!usercheck && (
+                           <div className="flex w-full items-center justify-center">
+                           <li onClick={() => { navigate('/home') }} className='cursor-pointer'>Login</li>
+                       </div>
+                    )}
+
                 </ul>
             </div>
             {/* Main Navigation */}
@@ -72,8 +86,8 @@ function Navigation() {
                 <span onClick={gotohome} className='text-[#000000] cursor-pointer text-[27px] sm:3xl xl:text-4xl oleo '>ShopKrow</span>
                 {/* Search */}
                 <div className="flex sriracha tracking-[1px] items-center">
-                    <input className='border-[2px] h-10 px-[20px] border-black rounded-3xl w-[180px] sm:w-[300px] md:w-[500px] lg:w-[450px] pr-[50px] outline-none ' type="text" placeholder='Search' />
-                    <img className='border-l-[2px] border-black h-10 w-10 p-1.5 ml-[-50px] cursor-pointer' src={search} alt="" />
+                    <input onChange={(e)=>setsearch(e.target.value)} className='border-[2px] h-10 px-[20px] border-black rounded-3xl w-[180px] sm:w-[300px] md:w-[500px] lg:w-[450px] pr-[50px] outline-none ' type="text" placeholder='Search' />
+                    <img onClick={handlesearch} className='border-l-[2px] border-black h-10 w-10 p-1.5 ml-[-50px] cursor-pointer' src={searchh} alt="" />
                 </div>
                 {/* Menu */}
                 <div className="h-12 w-fit gap-4 sriracha flex items-center lg:hidden">
@@ -96,9 +110,9 @@ function Navigation() {
                                 <li onClick={logoutt} className='cursor-pointer'>logout</li>
                             </div>
                         )}
-                         {!usercheck && (
+                        {!usercheck && (
                             <div className="flex gap-6">
-                                <li onClick={()=>{navigate('/home')}} className='cursor-pointer'>Login</li>
+                                <li onClick={() => { navigate('/home') }} className='cursor-pointer'>Login</li>
                             </div>
                         )}
 
