@@ -6,7 +6,7 @@ import Footer from '../Footer.jsx';
 import ResultNotFound from '../basics/ResultNotFound.jsx';
 import filter from '../../assets/filter.png';
 import Card from '../Card';
-
+    
 const Search = () => {
     const { search } = useParams();
     const [filtershow, setfiltershow] = useState(true)

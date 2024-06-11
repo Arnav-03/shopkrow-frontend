@@ -52,7 +52,7 @@ const Profile = () => {
 
             <div className="flex flex-row items-center justify-around border-b-[1px] border-[#9b9898] w-full h-fit p-4 py-3 overflow-hidden">
               <div className="text-3xl lg:text-4xl lilita ">Welcome <br />
-                <span className='text-[#265d81] uppercase'> {user?.username}</span>
+                <span className='text-[#265d81] '> {user?.username}</span>
               </div>
               <div className="border-4 bg-whte border-black 
               h-[100px] w-[100px]
@@ -77,7 +77,7 @@ const Profile = () => {
                 <li onClick={() => setpage(2)} className={`hover:bg-[#000000] drop-shadow-2xl bg-white hover:text-white rounded-lg flex items-center cursor-pointer px-2 my-1 py-0.5 
                  ${page === 2 ? "bg-yellow-500" : ""}`}>
                   <img className='h-16 mr-1 ml-[-5px]' src={orders} alt="" />
-                  your orders
+                  your orders 
                 </li>
                 <div className={`lg:hidden ${page===2?"":"hidden"}`}>
                   <YourOrders />
