@@ -12,9 +12,20 @@ const Product = () => {
   const { tagline, id } = useParams();
   const [resultfound, setresultfound] = useState(false);
   const [sizeinfo, setsizeinfo] = useState(null);
-  const [sizeinfoerror, setsizeinfoerror] = useState(false)
+  const [sizeinfoerror, setsizeinfoerror] = useState(false);
   const [product, setproduct] = useState([]);
   const [addedtocart, setaddedtocart] = useState(false);
+
+
+  useEffect(() => {
+    const isProductInCart = Cart.some(item => item.id === product.id);
+    if (isProductInCart) {
+      const cartItem = Cart.find(item => item.id === product.id);
+      setsizeinfo(cartItem.size);
+    }
+    setaddedtocart(isProductInCart);
+  }, [Cart, product]);
+
   useEffect(() => {
     fetchProductDetails();
   }, []);
@@ -62,10 +73,13 @@ const Product = () => {
     setaddedtocart(false);
     removecart(product.id)
   }
+
+
   useEffect(() => {
     console.log("Cart updated:", Cart);
   }, [Cart]);
 
+  
 
   return (
     <div className='h-screen lg:overflow-hidden w-full overflow-x-hidden'>

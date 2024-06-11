@@ -21,6 +21,10 @@ import { CheckoutContextProvider } from './context/CheckoutContext';
 import Address from './components/basics/Address';
 import { AddresscontextProvider } from './context/AddressContext';
 import Search from './components/basics/Search';
+import Success from './components/basics/Success';
+import Cancel from './components/basics/Cancel';
+import StatusRoute from './components/basics/Orderstatus'
+import Reciept from './components/basics/Reciept';
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 axios.defaults.withCredentials = true;
 
@@ -35,7 +39,6 @@ function App() {
         <Route path='/' element={<Intro />} />
         <Route path='/home' element={<UserRoute />} />
         <Route path='/search/:search' element={<Search />} />
-
         <Route path='/home' element={<UserRoute />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/cart' element={<Cart />} />
@@ -44,6 +47,10 @@ function App() {
         <Route path='/men' element={<MenRoute />} />
         <Route path="/:categoryName/:subcategoryName" element={<Cateogory_SubCateogory/>} />
         <Route path="/product/:tagline/:id" element={<Product/>} />
+        <Route path='/success/:paymentId' element={<Success/>}/>
+        <Route path='/cancel' element={<Cancel/>}/>
+        <Route path='/OrderStatus/:paymentId' element={<StatusRoute/>}/>
+        <Route path='/receipt/:paymentId' element={<Reciept/>}/>
 
       </Routes>
       </CheckoutContextProvider>
