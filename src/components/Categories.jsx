@@ -36,7 +36,7 @@ function Categories() {
         health,
         travel,
     ];
-    const categories_routes = [
+  /*   const categories_routes = [
         "/men",
         "/women",
         "/kids",
@@ -48,6 +48,18 @@ function Categories() {
         "/health-and-wellness",
         "/travel-and-luggage",
     ];
+ */ const categories_routes = [
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+    "/men",
+];
 
     return (
         <div className='flex flex-col flex-wrap justify-center items-center mt-6 h-fit '>
